@@ -1,8 +1,9 @@
 # Python Beginner Practice Projects
 
-This repository contains my Python practice projects as I learn the basics of coding.
+This folder contains my Python practice projects as I learn the basics of coding.
 
 Each folder is organized by topic:
+- `intro-to-python/`: basic concepts such as print statements, data types, and simple expressions
 - `logic/`: if/else practice (e.g., calculator, number guessing)
 - `loops/`: for/while loop projects (e.g., multiplication table, Fibonacci)
 - `strings/`: string manipulation (e.g., palindrome checker)
