@@ -1,0 +1,33 @@
+# Generates a simple HTML profile page using user input.
+# This project is based on a Khan Academy exercise that provided the original structure.
+# Purpose: string manipulation, handling input, creating and using variables. 
+# Customization: Personalized the webpage by using user input in multiple places.
+
+
+"""Fills in an HTML template with user data to construct a custom webpage."""
+
+# Collect user profile data.
+first_name = input("What's your first name? ")
+email = input("What is your email? ")
+bio = input("Write a short bio: ")
+birth_date = input("Write your date of birth: ")
+
+# Construct a personalized page header for the logged in user.
+header_title = "<h1>" + first_name + "'s profile</h1>"
+header_subtitle = "<h2>Hello, " + first_name + "!</h2>"
+header_content = "<p>" + email + "</p>"
+header_content2 = "<p>" + first_name + "'s birth date: " + birth_date + "</p>"
+page_header = header_title + header_subtitle + header_content + header_content2
+
+#header_subtitle2 = "<h2>Lovely to have you here today!<h2>"
+# Construct the main profile page content.
+section_title = "<h2>" + first_name + "'s profile page</h2>"
+section_text = "<p>" + bio + "</p>"
+button = "<button>Like</button>"
+section_footer = "<p>Notifications: 4</p>"
+page_content = section_title + section_text + button + section_footer
+
+# The final HTML body combines all the elements, in order.
+print("The HTML string for your profile page is:")
+print(page_header + page_content)
+
