@@ -1,1 +1,0 @@
-# File read/write example (placeholder)
