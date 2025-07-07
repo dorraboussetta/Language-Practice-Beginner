@@ -1,5 +1,0 @@
-print("Hello Khan Academy!") 
-print("This is the second program i've written so far!") 
-print("What is 99+101 ?" + " It's 200!")
-print(0.0+1) 
-print("Bye for now!")
