@@ -14,6 +14,8 @@
 # - How to create functions.
 #   Then I'll add functions to this program to remove some repetitions.
 
+# Open to feedback.
+
 import avatar
 import random
 
