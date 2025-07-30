@@ -1,13 +1,19 @@
-# Python Beginner Practice Projects
+# 🐍 Python Beginner Practice Projects
 
-This folder contains my Python practice projects as I learn the basics of coding.
+This folder contains my Python practice exercises and mini-projects.
 
-Each folder is organized by topic:
-- `intro-to-python/`: basic concepts such as print statements, data types, and simple expressions
-- `conditionals/`: designing algorithms with conditionals.
+## 📂 Contents
 
-## Why This Exists
-This repo is a learning journal. I’m building habits early by using GitHub to track everything I practice — even small projects.
+Each subfolder is organized by topic:
 
-## Next Steps
-As I grow, I’ll add more challenges and mini-projects.
+- `intro-to-python/`: Basic concepts such as print statements, data types, and simple expressions.  
+- `conditionals/`: Designing algorithms using conditional logic.  
+- `functions/`: Creating and calling functions.  
+- `lists/`: Creating, iterating through, and modifying lists.  
+- `loops/`: Practicing Python loop structures like `for` and `while`.
+
+> 📁 **Note:** Full-scale projects will have their own dedicated repositories.  
+> This folder is specifically for small-scale, Python-learning tasks.
+
+
+
