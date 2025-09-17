@@ -6,6 +6,7 @@
  * connected in series and in parallel. The user enters the values
  * of r1, r2, and r3, and the program prints the series and parallel
  * equivalent resistances.
+ * What I learned: scanf and practicing the c language syntax more.
  */
 
 int main()
