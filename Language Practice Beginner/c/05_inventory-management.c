@@ -30,7 +30,7 @@ int main() {
     float UnitPrices[20], TotalPrices[20];
 
 
-    //Validate user input for the number of shelves and columns(the dimensions of the matrix)
+
     do {
         printf("Enter the number of shelves: \n"); scanf("%d", &num_shelves);
     } while (num_shelves<1 || num_shelves>20);
@@ -59,47 +59,42 @@ int main() {
     }
 
     do {
-        // Display the menu
-        printf("\n=== MAIN MENU ===\n");
-        printf("1. Update the quantity of a given shelf\n");
-        printf("2. Display the total quantity of each product\n");
-        printf("3. Enter the unit price of each product\n");
-        printf("4. Calculate and store in a separate array the total price of the products\n");
-        printf("5. Delete from the total price array all cells with a price equal to zero\n");
-        printf("6. Sort the total prices of the products\n");
-        printf("7. Find a price in the array containing the prices\n");
-        printf("8. Quit\n");
-        printf("Enter your choice (1-8): ");
-        scanf("%d", &choice);
+            do {
+                printf("\n=== MAIN MENU ===\n");
+                printf("1. Update the quantity of a given shelf\n");
+                printf("2. Display the total quantity of each product\n");
+                printf("3. Enter the unit price of each product\n");
+                printf("4. Calculate and store in a separate array the total price of the products\n");
+                printf("5. Delete from the total price array all cells with a price equal to zero\n");
+                printf("6. Sort the total prices of the products\n");
+                printf("7. Find a price in the array containing the prices\n");
+                printf("8. Quit\n");
+                printf("Enter your choice (1-8): ");
+                scanf("%d", &choice);
 
-        // Validate input
-        if (choice < 1 || choice > 8) {
-            printf("Invalid choice! Please enter a number between 1 and 8.\n");
-            continue;
-        }
+                if (choice < 1 || choice > 8) printf("Invalid choice! Please enter a number between 1 and 8.\n");
+                } while (choice < 1 || choice > 8);
 
-        // Execute based on user choice
+
+
         switch (choice) {
             case 1: {
                 // Update the quantity  of a given shelf
                 int shelf, column, newval;
-                printf("Enter the shelf of the compartment you want to change the value of: \n");
-                scanf("%d", &shelf);
-                printf("Enter the column of the compartment you want to change the value of: \n");
-                scanf("%d", &column);
-                printf("Enter the new value of the compartment shelf %d column %d: \n", shelf, column);
-                scanf("%d", &newval);
+                printf("Enter the shelf of the compartment you want to change the value of: \n"); scanf("%d", &shelf);
+                printf("Enter the column of the compartment you want to change the value of: \n");scanf("%d", &column);
+                printf("Enter the new value of the compartment shelf %d column %d: \n", shelf, column); scanf("%d", &newval);
 
-                while (newval<0){
+               do {
                     printf("Quantity cannot be negative. Try again.\n"); scanf("%d", &newval);
-                }
+                }  while (newval<0);
                 Inventory[shelf][column] = newval;
 
                 printf("Your inventory: \n");
 
-                for (int i=0; i<num_shelves; i++) {
-                    for (int j=0; j<num_product_types; j++) {
-                        printf("%d | ", Inventory[i][j]);
+                for (int row=0; row<num_shelves; row++) {
+                    for (int col=0; col<num_product_types; col++) {
+                        printf("%d | ", Inventory[row][col]);
                     }
                     printf("\n");
                 }
@@ -108,7 +103,7 @@ int main() {
                 }
 
             case 2: {
-                //Display the total quantity of each product
+
                 int col, rows;
 
                 for (col=0; col<num_product_types; col++) quantities[col]=0;
@@ -119,8 +114,8 @@ int main() {
                     }
                  }
                  printf("Your quantities table is: \n");
-                for (int i=0; i<num_product_types; i++) {
-                    printf("%d | ",quantities[i]);
+                for (int index=0; index<num_product_types; index++) {
+                    printf("%d | ",quantities[index]);
                 }
 
 
@@ -128,15 +123,14 @@ int main() {
             }
 
             case 3: {
-                //Enter the unit prices of each product
                 for (int col=0; col<num_product_types; col++) {
                     printf("Enter the unit price of product %d: \n", col);
                     scanf("%f", &UnitPrices[col]);
                 }
                 printf("Unit prices are stored. Your unit prices: \n");
-                for (int i=0; i<num_product_types; i++)
+                for (int index=0; index<num_product_types; index++)
                     {
-                            printf("%f | ", UnitPrices[i]);
+                            printf("%f | ", UnitPrices[index]);
                     }
                     printf("\n");
 
@@ -147,73 +141,68 @@ int main() {
 
             case 4: {
                 //Calculate and store in a separate array the total price of the products
-                int product_type;
 
                 for (int col=0; col<num_product_types; col++) TotalPrices[col]=0;
 
-                for (product_type=0; product_type<num_product_types; product_type++) {
+                for (int product_type=0; product_type<num_product_types; product_type++) {
 
-                    TotalPrices[product_type]= (UnitPrices[product_type]*quantities[product_type]);
+                    TotalPrices[product_type]= UnitPrices[product_type]*quantities[product_type];
 
                 }
                 printf("Total prices are calculated.\n");
-                 for (int i=0; i<num_product_types; i++)
+                 for (int p=0; p<num_product_types; p++)
                     {
-                            printf("%f | ", TotalPrices[i]);
+                            printf("%f | ", TotalPrices[p]);
                     }
                     printf("\n");
                 break;
             }
 
             case 5: {
-                //Delete from the total price array all cells with a price equal to zero
-                int i, j;
-
-                for (i=0; i<(num_product_types-1); i++) {
-                    if (TotalPrices[i]==0)
+                for (int index=0; index<(num_product_types-1); index++) {
+                    if (TotalPrices[index]==0)
                     {   new_size--;
-                        for (j=i; j<new_size; j++) {
-                            TotalPrices[j]=TotalPrices[j+1];
+                        for (int el=index; el<new_size; el++) {
+                            TotalPrices[el]=TotalPrices[el+1];
                         }
                     }
                 }
 
                 printf("All prices equal to 0 are removed.\n"); printf("%d\n", new_size);
 
-                for (int i=0; i<new_size; i++)
+                for (int index=0; index<new_size; index++)
                     {
-                            printf("%f | ", TotalPrices[i]);
+                            printf("%f | ", TotalPrices[index]);
                     }
                     printf("\n");
                 break;
             }
 
             case 6: {
-                //Sort the total prices of the products
-                int i,j, min;
+                int min;
                 float temp;
 
-                for (i=0; i<(new_size-1); i++) {
-                    min=i;
-                    for (j=i+1; j<new_size; j++) {
-                        if (TotalPrices[j]<TotalPrices[min]) min=j;
+                for (int index=0; index<(new_size-1); index++) {
+                    min=index;
+                    for (int el=index+1; el<new_size; el++) {
+                        if (TotalPrices[el]<TotalPrices[min]) min=el;
                     }
-                    temp=TotalPrices[i];
-                    TotalPrices[i]=TotalPrices[min];
+                    temp=TotalPrices[index];
+                    TotalPrices[index]=TotalPrices[min];
                     TotalPrices[min]=temp;
 
                 }
                 printf("The total prices are sorted.\n");
-                  for (int i=0; i<new_size; i++)
+                  for (int index=0; index<new_size; index++)
                     {
-                            printf("%f | ", TotalPrices[i]);
+                            printf("%f | ", TotalPrices[index]);
                     }
                     printf("\n");
                 break;
             }
 
             case 7: {
-                //Find a price in the array containing the prices
+
                 int b,e, mid;
                 float x;
 
@@ -238,7 +227,7 @@ int main() {
             }
             case 8: {
 
-                printf("Program is terminated.\n");
+                printf("Thank you for using this program.\n");
                 break;
             }
         }
@@ -247,12 +236,5 @@ int main() {
 
     return 0;
 }
-
-
-
-
-
-
-
 
 
