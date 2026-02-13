@@ -1,169 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "header.h"
+#include "train.h"
+#include "string.h"
 
-int main() {
-    int choice,c, num_per, num_alerts=0, personnel_type;
-    personnel per[50];
-    alert alerts[50];
-    char login[15], password[15];
-
-    printf("Enter the number of personnel: \n"); scanf("%d", &num_per);
-
-    for (int index=0; index<num_per; index++) {
-        per[index]=fill_personnel(index);
-
-    }
-
-
+int main()
+{
+    List w=NULL;
+    int choice;
 
     do {
 
         do {
-    display_menu(0);
-    scanf("%d", &c);
 
-    if (c < 1 || c > 2) printf("Invalid choice! Please enter a number between 1 and 2.\n");
-
-         } while (c < 1 || c > 2);
-
-    switch (c) {
-
-        case 1: {
-
-            printf("Enter your login: \n"); fflush(stdin); gets(login);
-            printf("Enter your password: \n"); fflush(stdin); gets(password);
-            personnel_type=Connect_personnel(login,password,per,num_per);
-
-            if (personnel_type==1) {
-                do {
-
-                    do {
-                    display_menu(1);
-                    scanf("%d", &choice);
-
-                    if (choice < 1 || choice > 5) printf("Invalid choice! Please enter a number between 1 and 5.\n");
-
-                     } while (choice < 1 || choice > 5);
-
-                    switch (choice) {
-                        case 1: {
-                            num_alerts++;
-                            alerts[num_alerts-1]=add_alert(alerts, num_alerts);
-
-                            break;
-                        }
-
-                        case 2: {
-
-                        display_alerts(alerts, num_alerts);
-
-                            break;
-                        }
-
-                        case 3: {
-
-                           modify_alert(alerts, num_alerts);
-
-                            break;
-                        }
-
-                        case 4: {
-
-                            if (num_alerts==0) printf("No alerts listed yet.\n");
-                            else {
-                                delete_alert(alerts, num_alerts);
-                                num_alerts--;
-                            }
-
-                            break;
-                        }
-
-                        case 5: {
-
-                            printf("Thank you for using this application! \n");
-                            break;
-                        }
+        printf("\n=== MAIN MENU ===\n");
+        printf("1. Add a locomotive\n");
+        printf("2. Add a wagon\n");
+        printf("3. Search for a wagon\n");
+        printf("4. Display the content of the train\n");
+        printf("5. Quit\n");
+        printf("Enter your choice (1-5): ");
+        scanf("%d", &choice);
 
 
-                    }
+        if (choice < 1 || choice > 5) printf("Invalid choice! Please enter a number between 1 and 5.\n");
 
-                } while (choice != 5);}
-            else if (personnel_type==2){
-                    do {
-
-                    do {
-                    // Display the menu
-                   display_menu(2);
-                    scanf("%d", &choice);
-
-                    // Validate input
-                    if (choice < 1 || choice > 3) printf("Invalid choice! Please enter a number between 1 and 3.\n");
-
-                     } while (choice < 1 || choice > 3);
-
-                    // Execute based on user choice
-                    switch (choice) {
-                        case 1: {
-
-                           display_alerts(alerts, num_alerts);
-
-                            break;
-                        }
-
-                        case 2: {
+         } while (choice < 1 || choice > 5);
 
 
-                            alerts_percentage(alerts, num_alerts);
+        switch (choice) {
+            case 1: {
+                w=add_locomotive_head(w);
 
-                            break;
-                        }
-
-                        case 3: {
-                            printf("Thank you for using the application! \n");
-                            break;
-                        }
-
-                    }
-
-                } while (choice != 3);
-
-
-
-
+                break;
             }
 
-        else printf("No personnel with these credentials exists.\n");
+            case 2: {
+                w=add_wagon_tail(w);
+                break;
+            }
 
-        break;
+            case 3: {
+                int number;
+
+                printf("Enter the number of the wagon to search for: \n"); scanf("%d", &number);
+                if (search_wagon(w, number)==1) printf("Wagon found! \n");
+                else printf("Wagon not found! \n");
+
+                break;
+            }
+
+            case 4: {
+                display_train(w);
+                break;
+            }
+
+            case 5: {
+                printf("Thank you for using this program!\n");
+                free(w);
+                break;
+            }
+
         }
-        case 2: {
-            printf("Thank you for using this application.\n");
-            break;
 
-        }
-
-    }
-
-    } while (c!=2);
+    } while (choice != 5);
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
