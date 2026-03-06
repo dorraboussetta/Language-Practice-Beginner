@@ -1,0 +1,9 @@
+11 wagon 0
+8 wagon 1
+4 wagon 1
+5 locomotive 1
+2 wagon 0
+14 wagon 1
+12 wagon 0
+51 locomotive 0
+3 wagon 1
